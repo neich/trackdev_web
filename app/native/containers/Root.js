@@ -1,32 +1,20 @@
-import React, { Component } from 'react';
-import { Text } from 'react-native'
-import { NativeRouter, Link } from 'react-router-native'
-import { Navigation, Card } from 'react-router-navigation'
-import { Provider } from 'react-redux';
-import LoginPage from './LoginPage'
+import React, { Component } from 'react'
+
+import { Provider } from 'react-redux'
+import AppNavigator from '../navigation/AppNavigator'
 import configureStore from '../../store/configureStore.native'
 
 const store = configureStore()
+
+//evita warnings que es solucionen a la versió 0.57 de react-native
+console.ignoredYellowBox = ['Warning:']
 
 export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <NativeRouter>
-          <Navigation>
-            <Card
-              exact
-              path="/"
-              render={() => <Link to="/login"><Text>Log in</Text></Link> }
-            />
-            <Card
-              path="/login"
-              render={() => <LoginPage/> }
-            />
-          </Navigation>
-        </NativeRouter>
+        <AppNavigator/>
       </Provider>
-    );
+    )
   }
 }
-

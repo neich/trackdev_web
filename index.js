@@ -13,4 +13,4 @@ class TrackDev extends Component {
   }
 }
 
-AppRegistry.registerComponent('trackdev', () => TrackDev);
+AppRegistry.registerComponent('TrackDev', () => TrackDev);

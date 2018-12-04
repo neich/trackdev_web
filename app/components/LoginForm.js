@@ -1,59 +1,76 @@
-import React from 'react';
-import { View, Button, TextInput } from 'react-native'
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { View, Button, TextInput, Text } from 'react-native'
+import { FormStyles } from '../native/styles/nativeStyles'
+import { handleLoginAction } from '../actions/authedUser'
+import { connect } from 'react-redux'
 
-class LoginForm extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            username:'',
-            pwd:''
-        }
 
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+class LoginForm extends Component{
+  constructor(props) {
+    super(props)
+
+     this.state = {
+        email:'admin@gmail.com',
+        password:'admin'
     }
 
-    onChange(key, value) {
-        this.setState(Object.assign(
-          {},
-          this.state,
-          { [key]: value }))
-    }
+    this.onChange = this.onChange.bind(this)
+  }
 
-    onSubmit() {
-        this.props.userLoginRequest(this.state).then(
-            ()=>{},
-            (data)=>this.setState({errors:data})
-        );
-        console.log(this.state);
-    }
+  onChange(key, value) {
+    this.setState(Object.assign(
+      {},
+      this.state,
+      { [key]: value }))
+  }
 
-    render() {
-        return(
-          <View>
-            <TextInput
-              onChangeText={(text) => this.onChange('username', text)}
-              value={this.state.username}
-            />
-            <TextInput
-              onChangeText={(text) => this.onChange('pwd', text)}
-              value={this.state.pwd}
-            />
-              <Button
-                onPress={this.onSubmit}
-                title="Log in"
-                color="#841584"
-                accessibilityLabel="Learn more about this purple button"
-              />
-          </View>
-        );
+  async onSubmit() {
+    try {
+      let res = await this.props.dispatch(handleLoginAction(this.state))
+      
+      //props.navigate es la funció que fa la route (en mobil ho ha de fer navigation, es tracta al container de cada plataforma)
+      if (res.id) { 
+          if (this.props.navigateOK) this.props.navigateOK() 
+      }
+      else if (res.error) {
+          if (this.props.navigateFail) this.props.navigateFail(res.error.message)
+      }
+      else if (res.message) {
+          if (this.props.navigateFail) this.props.navigateFail(res.message)
+      }
+
+      console.log('---------------------------------------------------------------------')
+      console.log(res)
+      console.log('---------------------------------------------------------------------')
     }
+    catch( err ) {
+      console.log('vaia drama!!!')
+    }
+  }
+
+  render() {
+    return(
+      <View style={FormStyles.mainDiv}>
+        <View style={FormStyles.inputGroup}>
+          <Text >Usuari</Text>
+          <TextInput
+            onChangeText={(text) => this.onChange('email', text)}
+            value={this.state.email}
+          />
+        </View>
+
+        <View style={FormStyles.inputGroup}>
+          <Text >Password</Text>
+          <TextInput
+            onChangeText={(text) => this.onChange('password', text)}
+            value={this.state.password}
+            secureTextEntry={true}
+          />
+        </View>
+        <Button onPress={() => this.onSubmit()} title="Log in" />
+      </View>
+    )
+  }
 }
 
-LoginForm.propTypes = {
-    userLoginRequest: PropTypes.func.isRequired
-}
-
-
-export default LoginForm;
+export default connect()(LoginForm)

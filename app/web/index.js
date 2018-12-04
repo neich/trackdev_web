@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader';
@@ -8,7 +9,7 @@ const render = Component => {
     <AppContainer>
       <Component />
     </AppContainer>,
-    document.getElementById('root'),
+    document.getElementById('root')
   )
 }
 
