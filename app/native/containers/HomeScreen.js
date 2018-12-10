@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  AsyncStorage
 } from 'react-native'
 import styled from 'styled-components/native'
 
@@ -17,7 +18,8 @@ class HomeScreen extends React.Component {
     header: null,
   }
 
-  submitLogout() {
+  _submitLogout = async () => {
+    await AsyncStorage.removeItem('userToken')
     this.props.dispatch(handleLogoutAction())
   }
 
@@ -47,7 +49,7 @@ class HomeScreen extends React.Component {
           </WrapperTouchable>
 
           <WrapperTouchable>
-            <TouchableElement onPress={() => this.submitLogout()} >
+            <TouchableElement onPress={() => this._submitLogout()} >
               <TextLink>Logout</TextLink>
             </TouchableElement>
           </WrapperTouchable>
