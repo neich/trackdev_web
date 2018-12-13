@@ -1,22 +1,47 @@
 import React, { Component } from 'react'
 import { View, Text, AsyncStorage } from 'react-native'
+import { connect } from 'react-redux'
+
+import { tokenRequestAPI } from '../../utils/api'
+import { handleLogoutAction } from '../../actions/authedUser'
 
 class AuthScreen extends Component{
   constructor(props) {
     super(props);
-    this._bootstrapAsync()
   }
 
   static navigationOptions = {
     title: 'Auth'
   }
 
-  _bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken')
+  componentDidMount() {
+    this._bootstrapAsync()
+  }
 
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    this.props.navigation.navigate(userToken ? 'Main' : 'Login')
+  _bootstrapAsync = async () => {
+    try {
+      let userToken = await AsyncStorage.getItem('userToken')
+
+      if (userToken) {
+        let res = await tokenRequestAPI(userToken)
+        if (!res.validToken) {
+          await AsyncStorage.removeItem('userToken')
+          this.props.dispatch(handleLogoutAction())
+
+          this.props.navigation.navigate('Login')
+        }
+        else {
+          this.props.navigation.navigate('Main')
+        }
+      }
+      else {
+        this.props.navigation.navigate('Login')
+      }
+    }
+    catch (e) {
+      console.log('error desconegut')
+    }
+
   }
 
   render() {
@@ -29,4 +54,13 @@ class AuthScreen extends Component{
 
 }
 
-export default AuthScreen
+function mapStateProps ({ authedUser }) {
+  let username;
+  authedUser ? username =  authedUser.name : null;
+  return {
+      notLogged: authedUser === null,
+      username: username
+  }
+}
+
+export default connect(mapStateProps)(AuthScreen)

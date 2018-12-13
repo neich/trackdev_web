@@ -69,6 +69,24 @@ export function loginRequestAPI(userData){
 }
 
 
+export function tokenRequestAPI(token){
+    const obj = { 
+        token: token,
+        fakeToken: '1234'
+    }
+    return fetch("http://localhost:3000/api/users/token", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    }).then(function(response){
+        return response.json()
+    })
+}
+
+
 export function logoutRequestAPI(){
     return fetch("http://localhost:3000/api/users/logout", {
         method: "POST"
@@ -76,7 +94,6 @@ export function logoutRequestAPI(){
         return response
     })
 }
-
 
 
 export function fetchCourses(){

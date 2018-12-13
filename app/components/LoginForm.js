@@ -5,6 +5,8 @@ import { handleLoginAction } from '../actions/authedUser'
 import { connect } from 'react-redux'
 
 
+import { tokenRequestAPI } from '../utils/api'
+
 class LoginForm extends Component{
   constructor(props) {
     super(props)
@@ -29,8 +31,8 @@ class LoginForm extends Component{
       let res = await this.props.dispatch(handleLoginAction(this.state))
       
       //props.navigate es la funció que fa la route (en mobil ho ha de fer navigation, es tracta al container de cada plataforma)
-      if (res.id) { 
-          if (this.props.navigateOK) this.props.navigateOK() 
+      if (res.id) {
+          if (this.props.navigateOK) this.props.navigateOK(res.token) 
       }
       else if (res.error) {
           if (this.props.navigateFail) this.props.navigateFail(res.error.message)
@@ -42,10 +44,12 @@ class LoginForm extends Component{
       console.log('---------------------------------------------------------------------')
       console.log(res)
       console.log('---------------------------------------------------------------------')
+
     }
     catch( err ) {
       console.log('vaia drama!!!')
     }
+    
   }
 
   render() {
