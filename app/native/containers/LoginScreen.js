@@ -25,7 +25,7 @@ class LoginPage extends Component{
 
   _signInAsync = async (token) => {
     await AsyncStorage.setItem('userToken', token)
-    this.props.navigation.navigate('Main')
+    this.props.navigation.navigate('App')
   }
 
   _error = (msg) => {

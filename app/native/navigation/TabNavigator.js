@@ -3,8 +3,8 @@ import { Text } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 
 import HomeScreen from '../containers/HomeScreen'
-import SecondScreen from '../containers/SecondScreen'
 import LoginScreen from '../containers/LoginScreen'
+import SettingsScreen from '../containers/SettingsScreen'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen
@@ -14,17 +14,6 @@ HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: () => (
     <Text>H</Text>
-  ),
-}
-
-const SecondStack = createStackNavigator({
-  Second: SecondScreen,
-})
-
-SecondStack.navigationOptions = {
-  tabBarLabel: 'Second',
-  tabBarIcon: () => (
-    <Text>S</Text>
   ),
 }
 
@@ -39,8 +28,19 @@ LoginStack.navigationOptions = {
   ),
 }
 
+const SettingsStack = createStackNavigator({
+  Settings: SettingsScreen,
+})
+
+SettingsStack.navigationOptions = {
+  tabBarLabel: 'Settings',
+  tabBarIcon: () => (
+    <Text>S</Text>
+  ),
+}
+
 export default createBottomTabNavigator({
   HomeStack,
-  SecondStack,
-  LoginStack,
+  // LoginStack,
+  SettingsStack
 })

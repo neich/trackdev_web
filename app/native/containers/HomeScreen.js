@@ -21,6 +21,7 @@ class HomeScreen extends React.Component {
   _submitLogout = async () => {
     await AsyncStorage.removeItem('userToken')
     this.props.dispatch(handleLogoutAction())
+    this.props.navigation.navigate('Login')
   }
 
   render() {

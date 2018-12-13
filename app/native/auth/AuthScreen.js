@@ -31,7 +31,7 @@ class AuthScreen extends Component{
           this.props.navigation.navigate('Login')
         }
         else {
-          this.props.navigation.navigate('Main')
+          this.props.navigation.navigate('App')
         }
       }
       else {
