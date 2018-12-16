@@ -1,5 +1,6 @@
 
 import { createSwitchNavigator } from 'react-navigation'
+import { Dimensions } from 'react-native'
 
 import TabNavigator from './TabNavigator'
 import LoginStack from './LoginNavigator'

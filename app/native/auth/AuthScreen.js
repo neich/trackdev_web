@@ -15,10 +15,10 @@ class AuthScreen extends Component{
   }
 
   componentDidMount() {
-    this._bootstrapAsync()
+    this._tokenNavigate()
   }
 
-  _bootstrapAsync = async () => {
+  _tokenNavigate = async () => {
     try {
       let userToken = await AsyncStorage.getItem('userToken')
 
@@ -39,7 +39,7 @@ class AuthScreen extends Component{
       }
     }
     catch (e) {
-      console.log('error desconegut')
+      console.log('Error de resposta del servidor - (Comprova la connectivitat)')
     }
 
   }
@@ -54,13 +54,4 @@ class AuthScreen extends Component{
 
 }
 
-function mapStateProps ({ authedUser }) {
-  let username;
-  authedUser ? username =  authedUser.name : null;
-  return {
-      notLogged: authedUser === null,
-      username: username
-  }
-}
-
-export default connect(mapStateProps)(AuthScreen)
+export default connect()(AuthScreen)

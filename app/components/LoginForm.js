@@ -4,9 +4,6 @@ import { FormStyles } from '../native/styles/nativeStyles'
 import { handleLoginAction } from '../actions/authedUser'
 import { connect } from 'react-redux'
 
-
-import { tokenRequestAPI } from '../utils/api'
-
 class LoginForm extends Component{
   constructor(props) {
     super(props)
@@ -52,6 +49,10 @@ class LoginForm extends Component{
     
   }
 
+  handlePressSignUp() {
+    this.props.navigateSignUp()
+  }
+
   render() {
     return(
       <View style={FormStyles.mainDiv}>
@@ -72,6 +73,8 @@ class LoginForm extends Component{
           />
         </View>
         <Button onPress={() => this.onSubmit()} title="Log in" />
+        <View style={{height: 16}} />
+        <Button onPress={() => this.handlePressSignUp()} title='Sign Up' />
       </View>
     )
   }

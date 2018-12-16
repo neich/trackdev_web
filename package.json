@@ -10,7 +10,9 @@
     "android-dev-bundle": "react-native bundle --entry-file index.android.js --platform android --bundle-output android/app/src/main/assets/index.android.bundle",
     "web-bundle": "webpack --config web/webpack/web.prod.config.js --progress --colors",
     "web-dev": "webpack-dev-server --content-base web/public/ --config web/webpack/web.dev.config.js --port 3001 --inline --hot --colors",
-    "clear-cache": "gulp clear-cache"
+    "clear-cache": "gulp clear-cache",
+    "android-mac": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android",
+    "android-shake": "adb shell input keyevent 82"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",

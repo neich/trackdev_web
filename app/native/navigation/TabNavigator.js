@@ -1,13 +1,19 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, Dimensions } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 
 import HomeScreen from '../containers/HomeScreen'
-import LoginScreen from '../containers/LoginScreen'
+//import SignUpScreen from '../containers/SignUpScreen'
 import SettingsScreen from '../containers/SettingsScreen'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen
+},
+{
+  navigationOptions: ({ navigation }) => ({
+    title: `${navigation.state.routeName}`,
+    headerTitleStyle: {width: Dimensions.get('window').width}
+  })
 })
 
 HomeStack.navigationOptions = {
@@ -17,19 +23,28 @@ HomeStack.navigationOptions = {
   ),
 }
 
-const LoginStack = createStackNavigator({
-  Login: LoginScreen,
+/*
+
+const SignUpStack = createStackNavigator({
+  SignUp: SignUpScreen,
 })
 
-LoginStack.navigationOptions = {
-  tabBarLabel: 'Login',
+SignUpStack.navigationOptions = {
+  tabBarLabel: 'Sign Up',
   tabBarIcon: () => (
-    <Text>L</Text>
+    <Text>E</Text>
   ),
 }
+*/
 
 const SettingsStack = createStackNavigator({
   Settings: SettingsScreen,
+},
+{
+  navigationOptions: ({ navigation }) => ({
+    title: `${navigation.state.routeName}`,
+    headerTitleStyle: {width: Dimensions.get('window').width}
+  })
 })
 
 SettingsStack.navigationOptions = {
@@ -41,6 +56,9 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  // LoginStack,
+  //SignUpStack,
   SettingsStack
+},
+{
+  initialRouteName: 'HomeStack'
 })

@@ -1,27 +1,13 @@
 import React, { Component } from 'react'
-import { View, Alert, AsyncStorage } from 'react-native'
-import PropTypes from 'prop-types'
+import { Alert, AsyncStorage } from 'react-native'
 import LoginForm from '../../components/LoginForm'
-import { connect } from 'react-redux'
-import { userLoginRequest } from '../../actions/loginActions'
+import styled from 'styled-components/native'
 
-class LoginPage extends Component{
-  static navigationOptions = {
-    title: 'Log in'
-  }
+const Wrapper = styled.View`
+  padding: 16px;
+`
 
-  render() {
-    const { userLoginRequest } = this.props;
-    return (
-      <View>
-        <LoginForm
-          userLoginRequest={userLoginRequest}
-          navigateOK={this._signInAsync}
-          navigateFail={this._error}
-        /> 
-      </View>
-    )
-  }
+class LoginPage extends Component {
 
   _signInAsync = async (token) => {
     await AsyncStorage.setItem('userToken', token)
@@ -39,10 +25,17 @@ class LoginPage extends Component{
     )
   }
 
+  render() {
+    return (
+      <Wrapper>
+        <LoginForm
+          navigateOK={this._signInAsync}
+          navigateFail={this._error}
+          navigateSignUp={() => this.props.navigation.navigate('Signup')}
+        /> 
+      </Wrapper>
+    )
+  }
 }
 
-LoginPage.propTypes = {
-  userLoginRequest: PropTypes.func.isRequired
-}
-
-export default connect(null, {userLoginRequest})(LoginPage)
+export default LoginPage
