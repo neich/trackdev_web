@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { Alert, AsyncStorage } from 'react-native'
+import { Alert } from 'react-native'
 import LoginForm from '../../components/LoginForm'
 import styled from 'styled-components/native'
+import { connect } from 'react-redux'
+import { handleLoginAction } from '../../actions/authedUser'
+import { removeError } from '../../actions/error'
 
 const Wrapper = styled.View`
   padding: 16px;
@@ -9,9 +12,16 @@ const Wrapper = styled.View`
 
 class LoginPage extends Component {
 
-  _signInAsync = async (token) => {
-    await AsyncStorage.setItem('userToken', token)
-    this.props.navigation.navigate('App')
+  componentDidUpdate() {
+    const { navigation, email, error, removeError } = this.props
+    if (email) {
+      navigation.navigate('App')
+    }
+
+    if (error !== null) {
+      this._error(error)
+      removeError()
+    }
   }
 
   _error = (msg) => {
@@ -29,8 +39,7 @@ class LoginPage extends Component {
     return (
       <Wrapper>
         <LoginForm
-          navigateOK={this._signInAsync}
-          navigateFail={this._error}
+          loginAction={this.props.loginAction}
           navigateSignUp={() => this.props.navigation.navigate('Signup')}
         /> 
       </Wrapper>
@@ -38,4 +47,14 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage
+const mapStateToProps = (state) => ({
+  email: state.authedUser.email,
+  error: state.error
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  loginAction: (user) => dispatch(handleLoginAction(user)),
+  removeError: () => dispatch(removeError())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

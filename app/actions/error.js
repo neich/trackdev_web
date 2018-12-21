@@ -1,15 +1,11 @@
-import {REQUEST_ERROR, REMOVE_ERROR} from '../constants/Constants'
 
+export const setError = (error) => ({
+  type: 'REQUEST_ERROR',
+  payload: {
+    message: error
+  }
+})
 
-export function setError(error){
-    return {
-        type: REQUEST_ERROR,
-        message: error
-    }
-}
-
-export function removeError(){
-    return {
-        type: REMOVE_ERROR
-    }
-}
+export const removeError = () => ({
+	type: 'REMOVE_ERROR'
+})

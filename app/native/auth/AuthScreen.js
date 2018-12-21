@@ -3,18 +3,19 @@ import { View, Text, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 
 import { tokenRequestAPI } from '../../utils/api'
-import { handleLogoutAction } from '../../actions/authedUser'
+import { handleLogoutAction, setAuthedUser } from '../../actions/authedUser'
 
 class AuthScreen extends Component{
   constructor(props) {
-    super(props);
+    super(props)
+
   }
 
   static navigationOptions = {
     title: 'Auth'
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this._tokenNavigate()
   }
 
@@ -22,19 +23,23 @@ class AuthScreen extends Component{
     try {
       let userToken = await AsyncStorage.getItem('userToken')
 
-      if (userToken) {
+      if (userToken) { // si hi ha token
         let res = await tokenRequestAPI(userToken)
-        if (!res.validToken) {
-          await AsyncStorage.removeItem('userToken')
-          this.props.dispatch(handleLogoutAction())
-
+        if (!res.validToken) { //si no es valid logout
+          this.props.logoutAction()
           this.props.navigation.navigate('Login')
         }
-        else {
+        else { //si es valid entra a la app
+          const user = {
+            name: 'problemes',
+            email: res.email,
+            token: userToken
+          }
+          this.props.setUserRedux(user)
           this.props.navigation.navigate('App')
         }
       }
-      else {
+      else { 
         this.props.navigation.navigate('Login')
       }
     }
@@ -54,4 +59,9 @@ class AuthScreen extends Component{
 
 }
 
-export default connect()(AuthScreen)
+const mapDispatchToProps = (dispatch) => ({
+  setUserRedux: (user) => dispatch(setAuthedUser(user)),
+  logoutAction: () => dispatch(handleLogoutAction())
+})
+
+export default connect(null, mapDispatchToProps)(AuthScreen)

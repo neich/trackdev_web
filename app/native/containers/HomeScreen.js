@@ -1,9 +1,6 @@
 import React from 'react'
-import { Button, AsyncStorage } from 'react-native'
+import { Button } from 'react-native'
 import styled from 'styled-components/native'
-
-import { handleLogoutAction } from '../../actions/authedUser'
-import { connect } from 'react-redux'
 
 
 const WrapperScreen = styled.View`
@@ -16,16 +13,9 @@ const Space = styled.View`
 
 class HomeScreen extends React.Component {
 
-  _submitLogout = async () => {
-    await AsyncStorage.removeItem('userToken')
-    this.props.dispatch(handleLogoutAction())
-    this.props.navigation.navigate('Login')
-  }
-// this.props.navigation.navigate('App')
   render() {
     return (
       <WrapperScreen>
-        <Button onPress={() => this._submitLogout()} title='Log Out' />
         <Space />
         <Button onPress={() => this.props()} title='CRASH APP (to reload)' />
       </WrapperScreen>
@@ -34,4 +24,4 @@ class HomeScreen extends React.Component {
 
 }
 
-export default connect()(HomeScreen)
+export default HomeScreen

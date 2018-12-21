@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import { View, Button, TextInput, Text } from 'react-native'
 import { FormStyles } from '../native/styles/nativeStyles'
-import { handleLoginAction } from '../actions/authedUser'
-import { connect } from 'react-redux'
 
 class LoginForm extends Component{
   constructor(props) {
     super(props)
 
-     this.state = {
-        email:'admin@gmail.com',
-        password:'admin'
+    this.state = {
+      email:'admin@gmail.com',
+      password:'admin'
     }
 
     this.onChange = this.onChange.bind(this)
@@ -23,30 +21,8 @@ class LoginForm extends Component{
       { [key]: value }))
   }
 
-  async onSubmit() {
-    try {
-      let res = await this.props.dispatch(handleLoginAction(this.state))
-      
-      //props.navigate es la funció que fa la route (en mobil ho ha de fer navigation, es tracta al container de cada plataforma)
-      if (res.id) {
-          if (this.props.navigateOK) this.props.navigateOK(res.token) 
-      }
-      else if (res.error) {
-          if (this.props.navigateFail) this.props.navigateFail(res.error.message)
-      }
-      else if (res.message) {
-          if (this.props.navigateFail) this.props.navigateFail(res.message)
-      }
-
-      console.log('---------------------------------------------------------------------')
-      console.log(res)
-      console.log('---------------------------------------------------------------------')
-
-    }
-    catch( err ) {
-      console.log('vaia drama!!!')
-    }
-    
+  onSubmit() {
+    this.props.loginAction(this.state)
   }
 
   handlePressSignUp() {
@@ -80,4 +56,4 @@ class LoginForm extends Component{
   }
 }
 
-export default connect()(LoginForm)
+export default LoginForm
