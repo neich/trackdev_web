@@ -1,5 +1,6 @@
 
 const initialState = {
+  id: null,
   name: null,
   email: null,
   token: null
@@ -9,6 +10,7 @@ const initialState = {
 const setAuthedUser = (state, action) => {
   return {
     ...state,
+    id: action.payload.id,
     name: action.payload.name,
     email: action.payload.email,
     token: action.payload.token
@@ -18,6 +20,7 @@ const setAuthedUser = (state, action) => {
 const logoutAuthedUser = (state) => {
   return {
     ...state,
+    id: null,
     name: null,
     email: null,
     token: null

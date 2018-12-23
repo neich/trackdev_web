@@ -5,6 +5,7 @@ import { AsyncStorage } from 'react-native'
 export const setAuthedUser = (user) => ({
   type: 'SET_AUTHED_USER',
   payload: {
+		id: user.id,
     name: user.name,
     email: user.email,
     token: user.token
@@ -23,7 +24,6 @@ export const handleLogoutAction = () => {
       dispatch(logoutAuthedUser())
     }
     catch (error) {
-      console.log('Error: ' + error)
       return dispatch(setError(error.message))
     }
 	}
@@ -43,8 +43,8 @@ export const handleLoginAction = (userEmails, type) => {
 			}
 			else {
         console.log('Login correcte!')
-        dispatch(setAuthedUser(response))
-        await AsyncStorage.setItem('userToken', response.token)
+				await AsyncStorage.setItem('userToken', response.token)
+				dispatch(setAuthedUser(response))
 			}
 		}
 		catch (error) {

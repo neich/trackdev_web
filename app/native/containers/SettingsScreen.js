@@ -14,11 +14,12 @@ class SettingsScreen extends Component{
   
   }
 
-  componentDidUpdate() {
-    const { navigation, email } = this.props
+  shouldComponentUpdate(nextProps) {
+    const { navigation, email } = nextProps
     if (!email) {
       navigation.navigate('Login')
     }
+    return false
   }
 
   render() {

@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { View, Button, TextInput, Text } from 'react-native'
 import { FormStyles } from '../native/styles/nativeStyles'
 
-class LoginForm extends Component{
+class LoginForm extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      email:'admin@gmail.com',
-      password:'admin'
+      email:'alumne1@gmail.com',
+      password:'alumne'
     }
 
     this.onChange = this.onChange.bind(this)

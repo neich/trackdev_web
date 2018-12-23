@@ -11,10 +11,6 @@ class AuthScreen extends Component{
 
   }
 
-  static navigationOptions = {
-    title: 'Auth'
-  }
-
   componentDidMount () {
     this._tokenNavigate()
   }
@@ -31,8 +27,9 @@ class AuthScreen extends Component{
         }
         else { //si es valid entra a la app
           const user = {
-            name: 'problemes',
-            email: res.email,
+            id: res.user.id,
+            name: res.user.name,
+            email: res.user.email,
             token: userToken
           }
           this.props.setUserRedux(user)
@@ -51,9 +48,7 @@ class AuthScreen extends Component{
 
   render() {
     return (
-      <View>
-        <Text>Carregant...</Text>
-      </View>
+      <View />
     )
   }
 

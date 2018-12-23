@@ -95,9 +95,8 @@ export function logoutRequestAPI(){
     })
 }
 
-
-export function fetchCourses(){
-    return fetch("http://localhost:3000/api/assignatures", {
+export function fetchCourses(id){
+    return fetch("http://localhost:3000/api/cursos/"+id, {
         method: "GET",
         headers: {
             'Accept': 'application/json',

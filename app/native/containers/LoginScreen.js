@@ -12,8 +12,9 @@ const Wrapper = styled.View`
 
 class LoginPage extends Component {
 
-  componentDidUpdate() {
-    const { navigation, email, error, removeError } = this.props
+
+  shouldComponentUpdate(nextProps) {
+    const { navigation, email, error, removeError } = nextProps
     if (email) {
       navigation.navigate('App')
     }
@@ -22,6 +23,8 @@ class LoginPage extends Component {
       this._error(error)
       removeError()
     }
+
+    return false;
   }
 
   _error = (msg) => {
