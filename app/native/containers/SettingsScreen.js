@@ -8,6 +8,10 @@ const Wrapper = styled.View`
   padding: 16px;
 `
 
+const Space = styled.View`
+  height: 16px;
+`
+
 class SettingsScreen extends Component{
   constructor(props) {
     super(props)
@@ -26,6 +30,8 @@ class SettingsScreen extends Component{
     const { logoutAction } = this.props
     return (
       <Wrapper>
+        <Button onPress={() => this.props()} title='CRASH APP (to reload)' />
+        <Space />
         <Button onPress={() => logoutAction()} title='Log Out' />
       </Wrapper>
     )
