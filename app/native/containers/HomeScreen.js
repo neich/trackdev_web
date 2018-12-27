@@ -1,72 +1,55 @@
-import React, { Fragment } from 'react'
-import { Button, View, ScrollView } from 'react-native'
+import React, { Component } from 'react'
 import styled from 'styled-components/native'
 import { connect } from 'react-redux'
-import { handleGetCourses } from '../../actions/courses'
-import CourseCard from '../../components/CourseCard'
+import { handleGetCourses, setSelectedCourse } from '../../actions/courses'
+import CoursesList from '../../components/CoursesList'
 
-const WrapperScreen = styled.View`
+const WrapperScreen = styled.ScrollView`
   padding: 16px;
-  background-color: #f4f2ef;
+  background-color: white;
   height: 100%;
 `
 
-const Space = styled.View`
-  height: 16px;
-`
-
-class HomeScreen extends React.Component {
+class HomeScreen extends Component {
 
   componentWillMount() {
     const { getCoursesInfo, userId } = this.props
-    console.log(userId)
     getCoursesInfo(userId)
   }
 
-  renderCourses () {
-    const { infoUserCourses } = this.props
-    const courses = []
-    for (let i=0; i<infoUserCourses.length; i++) {
-      courses.push(
-        <Fragment>
-          <CourseCard
-            title={infoUserCourses[i].nomAssig}
-            professors={infoUserCourses[i].professorsCurs}
-            credits={infoUserCourses[i].creditsAssig}
-            dataInici={infoUserCourses[i].dataIniciCurs}
-            dataFi={infoUserCourses[i].dataFiCurs}
-          />
-          <Space />
-        </Fragment>
-      )
+  shouldComponentUpdate(nextProps) {
+    const { selectedCourse, navigation} = nextProps
+    if (selectedCourse !== null) {
+      navigation.navigate('Sprints')
+      return false
     }
-    return courses
+    return true
   }
 
   render() {
+    const { infoUserCourses, setSelectedCourse } = this.props
     return (
-      <ScrollView showsVerticalScrollIndicator={false} >
-        <WrapperScreen>
-          { this.props.infoUserCourses &&
-            <View>
-              {this.renderCourses()}
-            </View>
-          }
-        </WrapperScreen>
-      </ScrollView>
-      
+      <WrapperScreen showsVerticalScrollIndicator={false}>
+        { infoUserCourses &&
+          <CoursesList
+            infoUserCourses={infoUserCourses}
+            setSelectedCourse={setSelectedCourse}
+          />
+        }
+      </WrapperScreen>
     )
   }
-
 }
 
 const mapStateToProps = (state) => ({
   infoUserCourses: state.courses.infoUserCourses,
-  userId: state.authedUser.id
+  userId: state.authedUser.id,
+  selectedCourse: state.courses.selectedCourse
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getCoursesInfo: (id) => dispatch(handleGetCourses(id))
+  getCoursesInfo: (id) => dispatch(handleGetCourses(id)),
+  setSelectedCourse: (selectedCourse) => dispatch(setSelectedCourse(selectedCourse))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

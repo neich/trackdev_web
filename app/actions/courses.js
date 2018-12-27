@@ -9,6 +9,17 @@ export const setCourses = (infoUserCourses) => ({
   }
 })
 
+export const setSelectedCourse = (selectedCourse) => ({
+  type: 'SET_SELECTED_COURSE',
+  payload: {
+		selectedCourse
+  }
+})
+
+export const resetSelectedCourse = () => ({
+  type: 'RESET_SELECTED_COURSE',
+})
+
 export const handleGetCourses = (id) => {
 	return async (dispatch) => {
 		try {

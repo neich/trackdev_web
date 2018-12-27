@@ -1,6 +1,7 @@
 
 const initialState = {
-  infoUserCourses: null
+  infoUserCourses: null,
+  selectedCourse: null
 }
 
 // Reducers:
@@ -11,10 +12,26 @@ const setCourses = (state, action) => {
   }
 }
 
+const setSelectedCourse = (state, action) => {
+  return {
+    ...state,
+    selectedCourse: action.payload.selectedCourse
+  }
+}
+
+const resetSelectedCourse = (state) => {
+  return {
+    ...state,
+    selectedCourse: null
+  }
+}
+
 // root reducer
 const courses = (state = initialState, action) => {
 	switch (action.type) {
     case 'SET_COURSES': return setCourses(state, action)
+    case 'SET_SELECTED_COURSE': return setSelectedCourse(state, action)
+    case 'RESET_SELECTED_COURSE': return resetSelectedCourse(state, action)
     default: return state
   }
 }

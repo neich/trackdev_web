@@ -5,9 +5,11 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import HomeScreen from '../containers/HomeScreen'
 //import SignUpScreen from '../containers/SignUpScreen'
 import SettingsScreen from '../containers/SettingsScreen'
+import SprintsScreen from '../containers/SprintsScreen'
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen
+  Home: HomeScreen,
+  Sprints: SprintsScreen
 },
 {
   navigationOptions: ({ navigation }) => ({

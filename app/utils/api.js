@@ -107,6 +107,18 @@ export function fetchCourses(id){
     })
 }
 
+export function fetchSprints(userId, courseId){
+    return fetch("http://localhost:3000/api/sprints/"+userId+"/"+courseId, {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(function(response){
+        return response.json();
+    })
+}
+
 export function fetchCourse(id){
     return fetch("http://localhost:3000/api/assignatures/"+id, {
         method: "GET",

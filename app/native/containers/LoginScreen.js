@@ -12,10 +12,9 @@ const Wrapper = styled.View`
 
 class LoginPage extends Component {
 
-
   shouldComponentUpdate(nextProps) {
-    const { navigation, email, error, removeError } = nextProps
-    if (email) {
+    const { navigation, idUser, error, removeError } = nextProps
+    if (idUser) {
       navigation.navigate('App')
     }
 
@@ -51,7 +50,7 @@ class LoginPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  email: state.authedUser.email,
+  idUser: state.authedUser.id,
   error: state.error
 })
 
