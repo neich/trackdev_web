@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import styles from '../utils/styles'
 
 const ButtonWrapper = styled.TouchableOpacity`
   position: relative;
 
-  background-color: orange;
+  background-color: ${styles.colors.primary};
   border-width: 1.5;
-  border-color: white;
+  border-color: ${styles.colors.secondary};
   border-radius: 8;
 
   overflow: hidden;
@@ -19,14 +20,14 @@ const Title = styled.Text`
 
   font-size: 18px;
   font-weight: 500;
-  color: white;
+  color: ${styles.colors.secondary};
 
   padding: 56px 8px;
 `
 
 const Credits = styled.Text`
   position: absolute;
-  color: white;
+  color: ${styles.colors.secondary};
 
   padding: 8px;
 
@@ -36,7 +37,7 @@ const Credits = styled.Text`
 
 const Data = styled.Text`
   position: absolute;
-  color: white;
+  color: ${styles.colors.secondary};
 
   padding: 8px;
 
@@ -46,7 +47,7 @@ const Data = styled.Text`
 
 const NomProfessors = styled.Text`
   position: absolute;
-  color: white;
+  color: ${styles.colors.secondary};
 
   bottom: 0;
   left: 0;
