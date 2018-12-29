@@ -6,10 +6,12 @@ import HomeScreen from '../containers/HomeScreen'
 //import SignUpScreen from '../containers/SignUpScreen'
 import SettingsScreen from '../containers/SettingsScreen'
 import SprintsScreen from '../containers/SprintsScreen'
+import TasksScreen from '../containers/TasksScreen'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
-  Sprints: SprintsScreen
+  Sprints: SprintsScreen,
+  Tasks: TasksScreen
 },
 {
   navigationOptions: ({ navigation }) => ({

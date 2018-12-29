@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components/native'
 import { connect } from 'react-redux'
-import { handleGetSprints, resetSprints } from '../../actions/sprints'
+import { handleGetSprints, resetSprints, setSelectedStory } from '../../actions/sprints'
 import { resetSelectedCourse } from '../../actions/courses'
 
 import SprintsList from '../../components/SprintsList'
@@ -36,6 +36,15 @@ class SprintsScreen extends Component {
       this.updateTitleBar = false
     }
   }
+
+  shouldComponentUpdate(nextProps) {
+    const { selectedStory, navigation} = nextProps
+    if (selectedStory !== null) {
+      navigation.navigate('Tasks')
+      return false
+    }
+    return true
+  }
   
   componentWillUnmount() {
     const { resetUserSprints, resetSelectedCourse } = this.props
@@ -44,11 +53,14 @@ class SprintsScreen extends Component {
   }
 
   render() {
-    const { sprints } = this.props
+    const { sprints, setSelectedStory } = this.props
     return (
       <WrapperScreen showsVerticalScrollIndicator={false} >
         { sprints &&
-          <SprintsList sprints={sprints}/>
+          <SprintsList
+            sprints={sprints}
+            setSelectedStory={setSelectedStory}
+          />
         }
       </WrapperScreen>
     )
@@ -58,13 +70,15 @@ class SprintsScreen extends Component {
 const mapStateToProps = (state) => ({
   selectedCourse: state.courses.selectedCourse,
   userId: state.authedUser.id,
-  sprints: state.sprints.infoUserSprints
+  sprints: state.sprints.infoUserSprints,
+  selectedStory: state.sprints.selectedStory
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getSprintsInfo: (userId, courseId) => dispatch(handleGetSprints(userId, courseId)),
   resetUserSprints: () => dispatch(resetSprints()),
-  resetSelectedCourse: () => dispatch(resetSelectedCourse())
+  resetSelectedCourse: () => dispatch(resetSelectedCourse()),
+  setSelectedStory: (selectedStory) => dispatch(setSelectedStory(selectedStory))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SprintsScreen)

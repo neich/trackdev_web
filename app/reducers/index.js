@@ -4,6 +4,7 @@ import courses from './courses'
 import authedUser from './authedUser'
 import error from './error'
 import sprints from './sprints'
+import tasks from './tasks'
 
 
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
     authedUser,
     courses,
     sprints,
+    tasks,
     error
 })

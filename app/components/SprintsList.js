@@ -21,8 +21,6 @@ const WrapperCard = styled.View`
   overflow: hidden;
 
   margin-bottom: 16px;
-
-  elevation: 0;
 `
 
 const Title = styled.Text`
@@ -100,10 +98,11 @@ class SprintsList extends Component {
   }
 
   renderHistories(infoHistories) {
+    const { setSelectedStory } = this.props
     const histories = []
     for (let i=0; i<infoHistories.length; i++) {
       histories.push(
-        <ButtonHistoria key={i}>
+        <ButtonHistoria key={i} onPress={() => setSelectedStory(infoHistories[i])}>
           <Historia>{infoHistories[i].nomHistoria}</Historia>
           <StoryPointsContent>
             <StoryPoints>
