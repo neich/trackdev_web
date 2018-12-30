@@ -58,7 +58,10 @@ class SprintsScreen extends Component {
       <WrapperScreen showsVerticalScrollIndicator={false} >
         { sprints &&
           <SprintsList
-            sprints={sprints}
+            sprintsFuturs={sprints.sprintsFuturs}
+            sprintsPassats={sprints.sprintsPassats}
+            sprintActiu={sprints.sprintActiu}
+            historiesBacklog={sprints.historiesBacklog}
             setSelectedStory={setSelectedStory}
           />
         }

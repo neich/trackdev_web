@@ -119,8 +119,7 @@ class SprintsList extends Component {
     return histories
   }
 
-  renderSprints() {
-    const { sprints } = this.props
+  renderSprints(sprints) {
     const sprintCards = []
     for (let i=0; i<sprints.length; i++) {
       sprintCards.push(
@@ -129,7 +128,9 @@ class SprintsList extends Component {
           <WrapperHistories>
             {this.renderHistories(sprints[i].infoHistories)}
           </WrapperHistories>
-          <Data>{sprints[i].dataIniciSprint} - {sprints[i].dataFiSprint}</Data>
+          { sprints[i].dataIniciSprint &&
+            <Data>{sprints[i].dataIniciSprint + ' - ' + sprints[i].dataFiSprint}</Data>
+          }
         </WrapperCard>
       )
     }
@@ -137,10 +138,26 @@ class SprintsList extends Component {
   }
 
   render() {
+    const { sprintsFuturs, sprintActiu, historiesBacklog, sprintsPassats } = this.props
+    console.log(historiesBacklog)
     return (
       <Fragment>
-        <TitlePage>Sprints:</TitlePage>
-        {this.renderSprints()}
+        { sprintActiu &&
+          <Fragment>
+            <TitlePage>Sprint actiu:</TitlePage>
+            {this.renderSprints([sprintActiu])}
+          </Fragment>
+        }
+        { historiesBacklog &&
+          <Fragment>
+            <TitlePage>Backlog:</TitlePage>
+            {this.renderSprints([historiesBacklog])}
+          </Fragment>
+        }
+        {sprintsFuturs.length > 0 && <TitlePage>Sprints futurs:</TitlePage>}
+        {this.renderSprints(sprintsFuturs)}
+        {sprintsPassats.length > 0 && <TitlePage>Sprints passats:</TitlePage>}
+        {this.renderSprints(sprintsPassats)}
       </Fragment>
     )
   }

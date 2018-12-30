@@ -74,7 +74,11 @@ class TaskCard extends PureComponent {
       <WrapperCard>
         <Title>{nomTasca}</Title>
         <DescripcioTasca>{descripcioTasca}</DescripcioTasca>
-        <NomAlumne>{nomAssignat}</NomAlumne>
+        { nomAssignat ?
+          <NomAlumne>{nomAssignat}</NomAlumne>
+            :
+          <NomAlumne>no assignat</NomAlumne>
+        }
         <AfterWrapperCard>
           <BeforeWrapperCard estatTasca={estatTasca} />
         </AfterWrapperCard>
