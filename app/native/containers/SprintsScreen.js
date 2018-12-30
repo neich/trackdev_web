@@ -1,10 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import styled from 'styled-components/native'
 import { connect } from 'react-redux'
-import { handleGetSprints, resetSprints, setSelectedStory } from '../../actions/sprints'
+import { handleGetSprints, resetSprints, setSelectedStory, setGroupUsers } from '../../actions/sprints'
 import { resetSelectedCourse } from '../../actions/courses'
 
 import SprintsList from '../../components/SprintsList'
+import FloatingButton from '../../components/FloatingButton'
+
+const Wrapper = styled.View`
+  position: relative;
+  flex: 1;
+`
 
 const WrapperScreen = styled.ScrollView`
   padding: 16px;
@@ -32,13 +38,17 @@ class SprintsScreen extends Component {
   
   componentWillReceiveProps(nextProps) {
     if (this.updateTitleBar) {
-      this.props.navigation.setParams({ topTitle: nextProps.selectedCourse.nomAssig })
+      this.props.navigation.setParams({ topTitle: nextProps.selectedCourse.acronym })
       this.updateTitleBar = false
     }
   }
 
   shouldComponentUpdate(nextProps) {
-    const { selectedStory, navigation} = nextProps
+    const { selectedStory, pressGroupUsers, navigation} = nextProps
+    if (pressGroupUsers) {
+      navigation.navigate('GroupUsers')
+      return false
+    }
     if (selectedStory !== null) {
       navigation.navigate('Tasks')
       return false
@@ -53,19 +63,27 @@ class SprintsScreen extends Component {
   }
 
   render() {
-    const { sprints, setSelectedStory } = this.props
+    const { sprints, setSelectedStory, setGroupUsers } = this.props
     return (
-      <WrapperScreen showsVerticalScrollIndicator={false} >
-        { sprints &&
-          <SprintsList
-            sprintsFuturs={sprints.sprintsFuturs}
-            sprintsPassats={sprints.sprintsPassats}
-            sprintActiu={sprints.sprintActiu}
-            historiesBacklog={sprints.historiesBacklog}
-            setSelectedStory={setSelectedStory}
-          />
-        }
-      </WrapperScreen>
+      <Wrapper>
+        <WrapperScreen showsVerticalScrollIndicator={false} >
+          { sprints &&
+            <Fragment>
+            <SprintsList
+              sprintsFuturs={sprints.sprintsFuturs}
+              sprintsPassats={sprints.sprintsPassats}
+              sprintActiu={sprints.sprintActiu}
+              historiesBacklog={sprints.historiesBacklog}
+              setSelectedStory={setSelectedStory}
+            />
+            </Fragment>
+          }
+        </WrapperScreen>
+        <FloatingButton
+          content={'G'}
+          handleOnPress={setGroupUsers}
+        />
+      </Wrapper>
     )
   }
 }
@@ -74,14 +92,16 @@ const mapStateToProps = (state) => ({
   selectedCourse: state.courses.selectedCourse,
   userId: state.authedUser.id,
   sprints: state.sprints.infoUserSprints,
-  selectedStory: state.sprints.selectedStory
+  selectedStory: state.sprints.selectedStory,
+  pressGroupUsers: state.sprints.pressGroupUsers
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getSprintsInfo: (userId, courseId) => dispatch(handleGetSprints(userId, courseId)),
   resetUserSprints: () => dispatch(resetSprints()),
   resetSelectedCourse: () => dispatch(resetSelectedCourse()),
-  setSelectedStory: (selectedStory) => dispatch(setSelectedStory(selectedStory))
+  setSelectedStory: (selectedStory) => dispatch(setSelectedStory(selectedStory)),
+  setGroupUsers: () => dispatch(setGroupUsers())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SprintsScreen)

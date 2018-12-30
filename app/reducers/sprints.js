@@ -1,7 +1,8 @@
 
 const initialState = {
   infoUserSprints: null,
-  selectedStory: null
+  selectedStory: null,
+  pressGroupUsers: false
 }
 
 // Reducers:
@@ -33,6 +34,20 @@ const resetSelectedStory = (state) => {
   }
 }
 
+const setGroupUsers = (state) => {
+  return {
+    ...state,
+    pressGroupUsers: true
+  }
+}
+
+const resetGroupUsers = (state) => {
+  return {
+    ...state,
+    pressGroupUsers: false
+  }
+}
+
 // root reducer
 const sprints = (state = initialState, action) => {
 	switch (action.type) {
@@ -40,6 +55,8 @@ const sprints = (state = initialState, action) => {
     case 'RESET_SPRINTS': return resetSprints(state)
     case 'SET_SELECTED_STORY': return setSelectedStory(state, action)
     case 'RESET_SELECTED_STORY': return resetSelectedStory(state)
+    case 'ENABLE_GROUP_USERS': return setGroupUsers(state)
+    case 'DISABLE_GROUP_USERS': return resetGroupUsers(state)
     default: return state
   }
 }

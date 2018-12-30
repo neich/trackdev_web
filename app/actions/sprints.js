@@ -23,6 +23,14 @@ export const resetSelectedStory = () => ({
   type: 'RESET_SELECTED_STORY',
 })
 
+export const setGroupUsers = () => ({
+  type: 'ENABLE_GROUP_USERS'
+})
+
+export const disableGroupUsers = () => ({
+  type: 'DISABLE_GROUP_USERS'
+})
+
 export const handleGetSprints = (userId, courseId) => {
 	return async (dispatch) => {
 		try {

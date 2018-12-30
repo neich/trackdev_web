@@ -131,6 +131,18 @@ export function fetchTasks(storyId){
     })
 }
 
+export function fetchGroupUsers(groupId){
+    return fetch("http://localhost:3000/api/groupUsers/"+groupId, {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(function(response){
+        return response.json();
+    })
+}
+
 export function fetchCourse(id){
     return fetch("http://localhost:3000/api/assignatures/"+id, {
         method: "GET",

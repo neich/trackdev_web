@@ -7,11 +7,13 @@ import HomeScreen from '../containers/HomeScreen'
 import SettingsScreen from '../containers/SettingsScreen'
 import SprintsScreen from '../containers/SprintsScreen'
 import TasksScreen from '../containers/TasksScreen'
+import GroupUsersScreen from '../containers/GroupUsersScreen'
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   Sprints: SprintsScreen,
-  Tasks: TasksScreen
+  Tasks: TasksScreen,
+  GroupUsers: GroupUsersScreen
 },
 {
   navigationOptions: ({ navigation }) => ({

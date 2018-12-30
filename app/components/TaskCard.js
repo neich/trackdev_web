@@ -1,12 +1,13 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components/native'
+import styles from '../utils/styles'
 
 const WrapperCard = styled.View`
   position: relative;
 
-  background-color: #ff99cc;
+  background-color: ${styles.colors.primary};
   border-width: 1.5;
-  border-color: white;
+  border-color: ${styles.colors.secondary};
   border-radius: 8;
 
   overflow: hidden;
@@ -20,7 +21,7 @@ const AfterWrapperCard = styled.TouchableOpacity`
   width: 32px;
   
   border-width: 2;
-  border-color: #ff99cc;
+  border-color: ${styles.colors.primary};
   border-radius: 8;
 
   top: 0;
@@ -30,7 +31,7 @@ const AfterWrapperCard = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 
-  background-color: white;
+  background-color: ${styles.colors.secondary};
 `
 
 const BeforeWrapperCard = styled.View`
@@ -45,21 +46,21 @@ const BeforeWrapperCard = styled.View`
 const Title = styled.Text`
   font-size: 16px;
   font-weight: 500;
-  color: white;
+  color: ${styles.colors.secondary};
 
   padding: 16px 16px 8px 16px;
 `
 
 const DescripcioTasca = styled.Text`
   font-size: 14px;
-  color: white;
+  color: ${styles.colors.secondary};
 
   padding: 0px 32px 32px 32px;
 `
 
 const NomAlumne = styled.Text`
   position: absolute;
-  color: white;
+  color: ${styles.colors.secondary};
 
   padding: 8px;
 

@@ -139,7 +139,6 @@ class SprintsList extends Component {
 
   render() {
     const { sprintsFuturs, sprintActiu, historiesBacklog, sprintsPassats } = this.props
-    console.log(historiesBacklog)
     return (
       <Fragment>
         { sprintActiu &&
