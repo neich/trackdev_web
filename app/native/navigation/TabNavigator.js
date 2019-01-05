@@ -1,10 +1,11 @@
 import React from 'react'
-import { Text, Dimensions } from 'react-native'
+import { Dimensions } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 import styles from '../../utils/styles'
+import { Icon } from 'react-native-elements'
 
 import CoursesScreen from '../containers/CoursesScreen'
-//import SignUpScreen from '../containers/SignUpScreen'
+import ToDoScreen from '../containers/ToDoScreen'
 import ProfileScreen from '../containers/ProfileScreen'
 import SprintsScreen from '../containers/SprintsScreen'
 import TasksScreen from '../containers/TasksScreen'
@@ -25,24 +26,30 @@ const CoursesStack = createStackNavigator({
 
 CoursesStack.navigationOptions = {
   tabBarLabel: 'Cursos',
-  tabBarIcon: () => (
-    <Text>C</Text>
-  ),
+  tabBarIcon: ({tintColor}) => {
+    return <Icon name='school' size={24} color={tintColor} /> //menu //apps //school //layers
+  }
 }
 
-/*
 
-const SignUpStack = createStackNavigator({
-  SignUp: SignUpScreen,
+
+const ToDoStack = createStackNavigator({
+  ToDo: ToDoScreen,
+},
+{
+  navigationOptions: ({ navigation }) => ({
+    title: `${navigation.state.routeName}`,
+    headerTitleStyle: {width: Dimensions.get('window').width}
+  })
 })
 
-SignUpStack.navigationOptions = {
-  tabBarLabel: 'Sign Up',
-  tabBarIcon: () => (
-    <Text>E</Text>
-  ),
+ToDoStack.navigationOptions = {
+  tabBarLabel: 'A fer',
+  tabBarIcon: ({tintColor}) => {
+    return <Icon name='assignment-late' size={24} color={tintColor} />
+  }
 }
-*/
+
 
 const ProfileStack = createStackNavigator({
   Profile: ProfileScreen,
@@ -56,21 +63,23 @@ const ProfileStack = createStackNavigator({
 
 ProfileStack.navigationOptions = {
   tabBarLabel: 'Perfil',
-  tabBarIcon: () => (
-    <Text>P</Text>
-  ),
+  tabBarIcon: ({tintColor}) => {
+    return <Icon name='person' size={24} color={tintColor} />
+  }
 }
 
 export default createBottomTabNavigator({
   CoursesStack,
-  //SignUpStack,
+  ToDoStack,
   ProfileStack
 },
 {
-  initialRouteName: 'ProfileStack',
+  initialRouteName: 'ToDoStack',
   backBehavior: false,
   tabBarOptions: {
     activeTintColor: styles.colors.primary,
+    inactiveTintColor: styles.colors.subtitle,
     activeBackgroundColor: styles.colors.secondary,
+    inactiveBackgroundColor: styles.colors.secondary
   }
 })

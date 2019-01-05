@@ -3,6 +3,7 @@ const styles = {
     prova: '#FFA500', //orange
     secondary: '#FFFFFF', //white
     title: '#000000', //black
+    subtitle: '#D3D3D3', //lightgrey
 
     primary: '#66ccff' //prova de color
     //66ccff - blau

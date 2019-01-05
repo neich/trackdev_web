@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components/native'
+import styles from '../../utils/styles'
 import { connect } from 'react-redux'
 import { handleGetCourses, setSelectedCourse } from '../../actions/courses'
 import CoursesList from '../../components/CoursesList'
 
 const WrapperScreen = styled.ScrollView`
   padding: 16px;
-  background-color: white;
+  background-color: ${styles.colors.secondary};
   height: 100%;
 `
 

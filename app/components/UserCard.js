@@ -25,7 +25,7 @@ const ImageContent = styled.View`
   border-color: ${styles.colors.secondary};
   border-radius: 80;
 
-  background-color: lightgray;
+  background-color: ${styles.colors.subtitle};
 
   margin: 16px;
 `

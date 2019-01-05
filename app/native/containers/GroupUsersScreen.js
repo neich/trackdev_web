@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components/native'
+import styles from '../../utils/styles'
 import { connect } from 'react-redux'
 import { disableGroupUsers } from '../../actions/sprints'
 import { handleGetGroupUsers, resetGroupUsers } from '../../actions/groupUsers'
@@ -8,7 +9,7 @@ import GroupUsersList from '../../components/GroupUsersList'
 
 const WrapperScreen = styled.ScrollView`
   padding: 16px;
-  background-color: white;
+  background-color: ${styles.colors.secondary};
   height: 100%;
 `
 

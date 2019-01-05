@@ -69,9 +69,9 @@ class Button extends PureComponent {
         onPress={onPress}
         danger={danger}
       >
-        <Text>
-          {text}
-        </Text>
+        {text && 
+          <Text>{text}</Text>
+        }
         <BottomLeftText>
           {bottomLeftText}
         </BottomLeftText>

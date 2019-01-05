@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components/native'
+import styles from '../../utils/styles'
 import { connect } from 'react-redux'
 import { handleGetSprints, resetSprints, setSelectedStory, setGroupUsers } from '../../actions/sprints'
 import { resetSelectedCourse } from '../../actions/courses'
 
+import { Icon } from 'react-native-elements'
 import SprintsList from '../../components/SprintsList'
 import FloatingButton from '../../components/FloatingButton'
 
@@ -14,7 +16,7 @@ const Wrapper = styled.View`
 
 const WrapperScreen = styled.ScrollView`
   padding: 16px;
-  background-color: white;
+  background-color: ${styles.colors.secondary};
   height: 100%;
 `
 
@@ -80,10 +82,9 @@ class SprintsScreen extends Component {
             />
           }
         </WrapperScreen>
-        <FloatingButton
-          content={'G'}
-          handleOnPress={setGroupUsers}
-        />
+        <FloatingButton handleOnPress={setGroupUsers} >
+          <Icon name='group' size={24} color={styles.colors.primary} />
+        </FloatingButton>
       </Wrapper>
     )
   }

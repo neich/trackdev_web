@@ -1,12 +1,13 @@
 import React, { PureComponent, Fragment } from 'react'
 import styled from 'styled-components/native'
+import styles from '../utils/styles'
 
 import Card from './Card'
 
 const TitlePage = styled.Text`
   font-size: 20px;
   font-weight: 500;
-  color: black;
+  color: ${styles.colors.title};
 
   margin-bottom: 8px;
 `

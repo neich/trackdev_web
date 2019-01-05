@@ -20,7 +20,7 @@ const LogoutContent = styled.View`
   background-color: ${styles.colors.secondary};
 
   border-top-width: 0.4;
-  border-color: lightgray;
+  border-color: ${styles.colors.subtitle};
 
   padding: 8px 16px;
 

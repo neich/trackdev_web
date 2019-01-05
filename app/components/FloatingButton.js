@@ -34,10 +34,11 @@ const Content = styled.Text`
 
 class FloatingButton extends Component {
   render() {
-    const { content, handleOnPress } = this.props
+    const { content, handleOnPress, children } = this.props
     return (
       <Wrapper onPress={() => handleOnPress()} >
-        <Content>{content}</Content>
+        {content && <Content>{content}</Content>}
+        {children}
       </Wrapper>
     )
   }
