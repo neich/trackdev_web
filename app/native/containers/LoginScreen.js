@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { Alert } from 'react-native'
 import LoginForm from '../../components/LoginForm'
 import styled from 'styled-components/native'
+import styles from '../../utils/styles'
 import { connect } from 'react-redux'
 import { handleLoginAction } from '../../actions/authedUser'
 import { removeError } from '../../actions/error'
 
 const Wrapper = styled.View`
   padding: 16px;
+  background-color: ${styles.colors.secondary};
+  height: 100%;
 `
 
 class LoginPage extends Component {

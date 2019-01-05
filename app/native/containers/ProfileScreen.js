@@ -27,7 +27,7 @@ const LogoutContent = styled.View`
   elevation: 32;
 `
 
-class SettingsScreen extends Component {
+class ProfileScreen extends Component {
   constructor(props) {
     super(props)
   }
@@ -90,4 +90,4 @@ const mapDispatchToProps = (dispatch) => ({
   handleGetCourses: (userId) => dispatch(handleGetCourses(userId))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)

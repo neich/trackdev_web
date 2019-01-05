@@ -1,16 +1,17 @@
 import React from 'react'
 import { Text, Dimensions } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
+import styles from '../../utils/styles'
 
-import HomeScreen from '../containers/HomeScreen'
+import CoursesScreen from '../containers/CoursesScreen'
 //import SignUpScreen from '../containers/SignUpScreen'
-import SettingsScreen from '../containers/SettingsScreen'
+import ProfileScreen from '../containers/ProfileScreen'
 import SprintsScreen from '../containers/SprintsScreen'
 import TasksScreen from '../containers/TasksScreen'
 import GroupUsersScreen from '../containers/GroupUsersScreen'
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const CoursesStack = createStackNavigator({
+  Courses: CoursesScreen,
   Sprints: SprintsScreen,
   Tasks: TasksScreen,
   GroupUsers: GroupUsersScreen
@@ -22,10 +23,10 @@ const HomeStack = createStackNavigator({
   })
 })
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+CoursesStack.navigationOptions = {
+  tabBarLabel: 'Cursos',
   tabBarIcon: () => (
-    <Text>H</Text>
+    <Text>C</Text>
   ),
 }
 
@@ -43,8 +44,8 @@ SignUpStack.navigationOptions = {
 }
 */
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const ProfileStack = createStackNavigator({
+  Profile: ProfileScreen,
 },
 {
   navigationOptions: ({ navigation }) => ({
@@ -53,18 +54,23 @@ const SettingsStack = createStackNavigator({
   })
 })
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+ProfileStack.navigationOptions = {
+  tabBarLabel: 'Perfil',
   tabBarIcon: () => (
-    <Text>S</Text>
+    <Text>P</Text>
   ),
 }
 
 export default createBottomTabNavigator({
-  HomeStack,
+  CoursesStack,
   //SignUpStack,
-  SettingsStack
+  ProfileStack
 },
 {
-  initialRouteName: 'SettingsStack'
+  initialRouteName: 'ProfileStack',
+  backBehavior: false,
+  tabBarOptions: {
+    activeTintColor: styles.colors.primary,
+    activeBackgroundColor: styles.colors.secondary,
+  }
 })

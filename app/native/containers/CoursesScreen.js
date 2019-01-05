@@ -10,7 +10,7 @@ const WrapperScreen = styled.ScrollView`
   height: 100%;
 `
 
-class HomeScreen extends Component {
+class CoursesScreen extends Component {
 
   static navigationOptions = () => ({
     title: 'Cursos'
@@ -56,4 +56,4 @@ const mapDispatchToProps = (dispatch) => ({
   setSelectedCourse: (selectedCourse) => dispatch(setSelectedCourse(selectedCourse))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesScreen)

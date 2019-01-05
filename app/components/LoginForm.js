@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import { View, Button, TextInput, Text } from 'react-native'
+import { View, TextInput, Text } from 'react-native'
 import { FormStyles } from '../native/styles/nativeStyles'
+import styles from '../utils/styles'
+
+import Button from '../components/Button'
 
 class LoginForm extends Component {
   constructor(props) {
@@ -31,26 +34,30 @@ class LoginForm extends Component {
 
   render() {
     return(
-      <View style={FormStyles.mainDiv}>
+      <View>
         <View style={FormStyles.inputGroup}>
-          <Text >Usuari</Text>
+          <Text>Usuari</Text>
           <TextInput
             onChangeText={(text) => this.onChange('email', text)}
             value={this.state.email}
+            placeholderTextColor={styles.colors.primary}
+            selectionColor={styles.colors.primary}
+            underlineColorAndroid={styles.colors.primary}
           />
         </View>
 
         <View style={FormStyles.inputGroup}>
-          <Text >Password</Text>
+          <Text>Contrasenya</Text>
           <TextInput
             onChangeText={(text) => this.onChange('password', text)}
             value={this.state.password}
             secureTextEntry={true}
+            placeholderTextColor={styles.colors.primary}
+            selectionColor={styles.colors.primary}
+            underlineColorAndroid={styles.colors.primary}
           />
         </View>
-        <Button onPress={() => this.onSubmit()} title="Log in" />
-        <View style={{height: 16}} />
-        <Button onPress={() => this.handlePressSignUp()} title='Sign Up' />
+        <Button onPress={() => this.onSubmit()} text="LOG IN" />
       </View>
     )
   }

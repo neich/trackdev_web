@@ -4,7 +4,7 @@ const styles = {
     secondary: '#FFFFFF', //white
     title: '#000000', //black
 
-    primary: '#ff99cc' //prova de color
+    primary: '#66ccff' //prova de color
     //66ccff - blau
     //99ffdd - verd menta
     //ffb84d - taronja mes clar

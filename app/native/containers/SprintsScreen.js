@@ -38,7 +38,10 @@ class SprintsScreen extends Component {
   
   componentWillReceiveProps(nextProps) {
     if (this.updateTitleBar) {
-      this.props.navigation.setParams({ topTitle: nextProps.selectedCourse.acronym })
+      this.props.navigation.setParams({
+        topTitle: `${nextProps.selectedCourse.acronym}
+        ${nextProps.selectedCourse.dataIniciCurs.substr(-7)} - ${nextProps.selectedCourse.dataFiCurs.substr(-7)}`
+      })
       this.updateTitleBar = false
     }
   }
