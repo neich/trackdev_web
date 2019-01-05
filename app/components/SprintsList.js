@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react'
 import styled from 'styled-components/native'
 import styles from '../utils/styles'
 
+import Card from './Card'
+
 const TitlePage = styled.Text`
   font-size: 20px;
   font-weight: 500;
@@ -10,41 +12,10 @@ const TitlePage = styled.Text`
   margin-bottom: 8px;
 `
 
-const WrapperCard = styled.View`
-  position: relative;
-
-  background-color: ${styles.colors.primary};
-  border-width: 1.5;
-  border-color: ${styles.colors.secondary};
-  border-radius: 8;
-
-  overflow: hidden;
-
-  margin-bottom: 16px;
-`
-
-const Title = styled.Text`
-  font-size: 16px;
-  font-weight: 500;
-  color: ${styles.colors.secondary};
-
-  padding: 24px 16px 8px 16px;
-`
-
-const Data = styled.Text`
-  position: absolute;
-  color: ${styles.colors.secondary};
-
-  padding: 8px;
-
-  top: 0;
-  right: 0;
-`
-
 const WrapperHistories = styled.View`
   background-color: ${styles.colors.primary};
 
-  padding: 8px 32px;
+  padding: 0px 24px;
   width: 100%;
 `
 
@@ -55,7 +26,7 @@ const ButtonHistoria = styled.TouchableOpacity`
   border-width: 2;
   border-color: ${styles.colors.secondary};
 
-  margin-bottom: 16px;
+  margin: 8px 0px;
 
   overflow: hidden;
 
@@ -123,15 +94,14 @@ class SprintsList extends Component {
     const sprintCards = []
     for (let i=0; i<sprints.length; i++) {
       sprintCards.push(
-        <WrapperCard key={i}>
-          <Title>Històries: </Title>
+        <Card key={i}
+          title={'Històries: '}
+          topRightText={sprints[i].dataIniciSprint && `${sprints[i].dataIniciSprint} - ${sprints[i].dataFiSprint}`}
+        >
           <WrapperHistories>
             {this.renderHistories(sprints[i].infoHistories)}
           </WrapperHistories>
-          { sprints[i].dataIniciSprint &&
-            <Data>{sprints[i].dataIniciSprint + ' - ' + sprints[i].dataFiSprint}</Data>
-          }
-        </WrapperCard>
+        </Card>
       )
     }
     return sprintCards

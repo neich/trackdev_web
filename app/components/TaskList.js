@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import styled from 'styled-components/native'
 
-import TaskCard from './TaskCard'
+import Card from './Card'
 
 const TitlePage = styled.Text`
   font-size: 20px;
@@ -11,27 +11,7 @@ const TitlePage = styled.Text`
   margin-bottom: 8px;
 `
 
-const WrapperCard = styled.View`
-  position: relative;
-
-  background-color: #ff99cc;
-  border-width: 1.5;
-  border-color: white;
-  border-radius: 8;
-
-  overflow: hidden;
-
-  margin-bottom: 16px;
-`
-
-const Descripcio = styled.Text`
-  font-size: 14px;
-  color: white;
-
-  padding: 8px 16px;
-`
-
-class TaskList extends Component {
+class TaskList extends PureComponent {
   constructor(props) {
     super(props)
   }
@@ -41,12 +21,12 @@ class TaskList extends Component {
     const tasks = []
     for (let i=0; i<infoTasks.tasques.length; i++) {
       tasks.push(
-        <TaskCard
+        <Card
           key={i}
-          nomTasca={infoTasks.tasques[i].nomTasca}
-          descripcioTasca={infoTasks.tasques[i].descripcioTasca}
-          nomAssignat={infoTasks.tasques[i].nomAssignat}
-          estatTasca={infoTasks.tasques[i].estatTasca}
+          title={infoTasks.tasques[i].nomTasca}
+          description={infoTasks.tasques[i].descripcioTasca}
+          bottomRightText={infoTasks.tasques[i].nomAssignat || 'no assignat'}
+          state={infoTasks.tasques[i].estatTasca}
         />
       )
     }
@@ -58,11 +38,7 @@ class TaskList extends Component {
     return (
       <Fragment>
         <TitlePage>Descripció de la història:</TitlePage>
-        <WrapperCard>
-          <Descripcio>
-            {infoTasks.descripcioHistoria}
-          </Descripcio>
-        </WrapperCard>
+        <Card description={infoTasks.descripcioHistoria} />
         <TitlePage>Tasques assignades:</TitlePage>
         {this.renderTasks()}
       </Fragment>

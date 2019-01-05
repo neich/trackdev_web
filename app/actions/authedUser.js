@@ -1,4 +1,4 @@
-import { loginRequestAPI, logoutRequestAPI } from '../utils/api'
+import { loginRequestAPI, logoutRequestAPI, fetchUserAuthedCourses } from '../utils/api'
 import { setError } from './error'
 import { AsyncStorage } from 'react-native'
 
@@ -15,6 +15,25 @@ export const setAuthedUser = (user) => ({
 export const logoutAuthedUser = () => ({
   type: 'LOGOUT_AUTHED_USER'
 })
+
+export const setAuthedUserCourses = (coursesInfo) => ({
+  type: 'SET_AUTHED_USER_COURSES',
+  payload: {
+		coursesInfo
+  }
+})
+
+export const handleGetCourses = (userId) => {
+	return async (dispatch) => {
+		try {
+      const response = await fetchUserAuthedCourses(userId)
+      dispatch(setAuthedUserCourses(response))
+    }
+    catch (error) {
+      return dispatch(setError(error.message))
+    }
+	}
+}
 
 export const handleLogoutAction = () => {
 	return async (dispatch) => {

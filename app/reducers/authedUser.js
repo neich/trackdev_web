@@ -3,7 +3,8 @@ const initialState = {
   id: null,
   name: null,
   email: null,
-  token: null
+  token: null,
+  coursesInfo: null
 }
 
 // Reducers:
@@ -23,7 +24,15 @@ const logoutAuthedUser = (state) => {
     id: null,
     name: null,
     email: null,
-    token: null
+    token: null,
+    coursesInfo: null
+  }
+}
+
+const setAuthedUserCourses = (state, action) => {
+  return {
+    ...state,
+    coursesInfo: action.payload.coursesInfo
   }
 }
 
@@ -32,6 +41,7 @@ const authedUser = (state = initialState, action) => {
 	switch (action.type) {
     case 'SET_AUTHED_USER': return setAuthedUser(state, action)
     case 'LOGOUT_AUTHED_USER': return logoutAuthedUser(state)
+    case 'SET_AUTHED_USER_COURSES': return setAuthedUserCourses(state, action)
     default: return state
   }
 }

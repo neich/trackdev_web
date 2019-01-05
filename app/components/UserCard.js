@@ -14,7 +14,6 @@ const WrapperCard = styled.View`
 
   margin-bottom: 16px;
 
-  flex: 1;
   flex-direction: row;
 `
 
@@ -26,7 +25,7 @@ const ImageContent = styled.View`
   border-color: ${styles.colors.secondary};
   border-radius: 80;
 
-  background-color: grey;
+  background-color: lightgray;
 
   margin: 16px;
 `

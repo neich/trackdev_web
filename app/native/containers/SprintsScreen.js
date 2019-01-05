@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components/native'
 import { connect } from 'react-redux'
 import { handleGetSprints, resetSprints, setSelectedStory, setGroupUsers } from '../../actions/sprints'
@@ -68,7 +68,6 @@ class SprintsScreen extends Component {
       <Wrapper>
         <WrapperScreen showsVerticalScrollIndicator={false} >
           { sprints &&
-            <Fragment>
             <SprintsList
               sprintsFuturs={sprints.sprintsFuturs}
               sprintsPassats={sprints.sprintsPassats}
@@ -76,7 +75,6 @@ class SprintsScreen extends Component {
               historiesBacklog={sprints.historiesBacklog}
               setSelectedStory={setSelectedStory}
             />
-            </Fragment>
           }
         </WrapperScreen>
         <FloatingButton

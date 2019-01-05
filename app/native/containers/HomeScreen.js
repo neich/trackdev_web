@@ -12,6 +12,10 @@ const WrapperScreen = styled.ScrollView`
 
 class HomeScreen extends Component {
 
+  static navigationOptions = () => ({
+    title: 'Cursos'
+  })
+
   componentWillMount() {
     const { getCoursesInfo, userId } = this.props
     getCoursesInfo(userId)

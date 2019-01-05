@@ -66,5 +66,5 @@ export default createBottomTabNavigator({
   SettingsStack
 },
 {
-  initialRouteName: 'HomeStack'
+  initialRouteName: 'SettingsStack'
 })
