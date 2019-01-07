@@ -155,6 +155,18 @@ export function fetchUserAuthedCourses(userId){
     })
 }
 
+export function fetchTodoTasks(userId){
+    return fetch("http://localhost:3000/api/todo/"+userId, {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(function(response){
+        return response.json();
+    })
+}
+
 export function fetchCourse(id){
     return fetch("http://localhost:3000/api/assignatures/"+id, {
         method: "GET",

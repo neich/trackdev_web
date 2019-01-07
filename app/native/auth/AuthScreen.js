@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import { View, Text, AsyncStorage } from 'react-native'
+import { View, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 import { tokenRequestAPI } from '../../utils/api'
 import { handleLogoutAction, setAuthedUser } from '../../actions/authedUser'
 
+const WrapperScreen = styled.ScrollView`
+  padding: 16px;
+  background-color: white;
+  height: 100%;
+`
+
 class AuthScreen extends Component{
-  constructor(props) {
-    super(props)
-
-  }
-
   componentDidMount () {
     this._tokenNavigate()
   }
@@ -48,7 +50,7 @@ class AuthScreen extends Component{
 
   render() {
     return (
-      <View />
+      <WrapperScreen />
     )
   }
 

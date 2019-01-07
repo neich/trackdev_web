@@ -32,7 +32,6 @@ CoursesStack.navigationOptions = {
 }
 
 
-
 const ToDoStack = createStackNavigator({
   ToDo: ToDoScreen,
 },
@@ -68,6 +67,7 @@ ProfileStack.navigationOptions = {
   }
 }
 
+// bottom tab navigator
 export default createBottomTabNavigator({
   CoursesStack,
   ToDoStack,
