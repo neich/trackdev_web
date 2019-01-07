@@ -7,7 +7,7 @@ import { handleGetTasks, resetTasks } from '../../actions/tasks'
 
 import TaskList from '../../components/TaskList'
 
-const WrapperScreen = styled.ScrollView`
+const WrapperScreen = styled.ScrollView.attrs({ showsVerticalScrollIndicator: false })`
   padding: 16px;
   background-color: ${styles.colors.secondary};
   height: 100%;
@@ -47,7 +47,7 @@ class TasksScreen extends Component {
   render() {
     const { infoTasks } = this.props
     return (
-      <WrapperScreen showsVerticalScrollIndicator={false} >
+      <WrapperScreen>
         { infoTasks &&
           <TaskList infoTasks={infoTasks} />
         }

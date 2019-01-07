@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleLogoutAction, handleGetCourses } from '../../actions/authedUser'
+import { handleLogoutAction, handleGetCourses, resetAuthedUserCourses } from '../../actions/authedUser'
 import styled from 'styled-components/native'
 import styles from '../../utils/styles'
 
@@ -10,7 +10,7 @@ import Button from '../../components/Button'
 const Wrapper = styled.View`
   flex: 1;
 `
-const WrapperScreen = styled.ScrollView`
+const WrapperScreen = styled.ScrollView.attrs({ showsVerticalScrollIndicator: false })`
   padding: 16px;
   background-color: ${styles.colors.secondary};
   height: 100%;
@@ -23,8 +23,6 @@ const LogoutContent = styled.View`
   border-color: ${styles.colors.subtitle};
 
   padding: 8px 16px;
-
-  elevation: 32;
 `
 
 class ProfileScreen extends Component {
@@ -50,6 +48,11 @@ class ProfileScreen extends Component {
       return true
     }
     return false
+  }
+
+  componentWillUnmount() {
+    const { resetAuthedUserCourses } = this.props
+    resetAuthedUserCourses()
   }
 
   render() {
@@ -87,7 +90,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   logoutAction: () => dispatch(handleLogoutAction()),
-  handleGetCourses: (userId) => dispatch(handleGetCourses(userId))
+  handleGetCourses: (userId) => dispatch(handleGetCourses(userId)),
+  resetAuthedUserCourses: () => dispatch(resetAuthedUserCourses())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)

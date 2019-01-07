@@ -23,6 +23,10 @@ export const setAuthedUserCourses = (coursesInfo) => ({
   }
 })
 
+export const resetAuthedUserCourses = () => ({
+  type: 'RESET_AUTHED_USER_COURSES',
+})
+
 export const handleGetCourses = (userId) => {
 	return async (dispatch) => {
 		try {

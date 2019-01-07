@@ -9,6 +9,10 @@ export const setCourses = (infoUserCourses) => ({
   }
 })
 
+export const resetCourses = () => ({
+  type: 'RESET_COURSES'
+})
+
 export const setSelectedCourse = (selectedCourse) => ({
   type: 'SET_SELECTED_COURSE',
   payload: {
@@ -17,7 +21,7 @@ export const setSelectedCourse = (selectedCourse) => ({
 })
 
 export const resetSelectedCourse = () => ({
-  type: 'RESET_SELECTED_COURSE',
+  type: 'RESET_SELECTED_COURSE'
 })
 
 export const handleGetCourses = (id) => {

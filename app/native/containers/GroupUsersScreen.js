@@ -7,7 +7,7 @@ import { handleGetGroupUsers, resetGroupUsers } from '../../actions/groupUsers'
 
 import GroupUsersList from '../../components/GroupUsersList'
 
-const WrapperScreen = styled.ScrollView`
+const WrapperScreen = styled.ScrollView.attrs({ showsVerticalScrollIndicator: false })`
   padding: 16px;
   background-color: ${styles.colors.secondary};
   height: 100%;

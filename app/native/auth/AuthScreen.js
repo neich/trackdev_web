@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { tokenRequestAPI } from '../../utils/api'
 import { handleLogoutAction, setAuthedUser } from '../../actions/authedUser'
 
-const WrapperScreen = styled.ScrollView`
+const WrapperScreen = styled.ScrollView.attrs({ showsVerticalScrollIndicator: false })`
   padding: 16px;
   background-color: white;
   height: 100%;

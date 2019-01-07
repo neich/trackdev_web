@@ -36,12 +36,20 @@ const setAuthedUserCourses = (state, action) => {
   }
 }
 
+const resetAuthedUserCourses = (state) => {
+  return {
+    ...state,
+    coursesInfo: null
+  }
+}
+
 // root reducer
 const authedUser = (state = initialState, action) => {
 	switch (action.type) {
     case 'SET_AUTHED_USER': return setAuthedUser(state, action)
     case 'LOGOUT_AUTHED_USER': return logoutAuthedUser(state)
     case 'SET_AUTHED_USER_COURSES': return setAuthedUserCourses(state, action)
+    case 'RESET_AUTHED_USER_COURSES': return resetAuthedUserCourses(state)
     default: return state
   }
 }

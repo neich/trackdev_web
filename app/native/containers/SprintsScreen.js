@@ -14,7 +14,7 @@ const Wrapper = styled.View`
   flex: 1;
 `
 
-const WrapperScreen = styled.ScrollView`
+const WrapperScreen = styled.ScrollView.attrs({ showsVerticalScrollIndicator: false })`
   padding: 16px;
   background-color: ${styles.colors.secondary};
   height: 100%;

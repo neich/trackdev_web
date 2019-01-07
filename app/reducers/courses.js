@@ -12,6 +12,13 @@ const setCourses = (state, action) => {
   }
 }
 
+const resetCourses = (state) => {
+  return {
+    ...state,
+    infoUserCourses: null
+  }
+}
+
 const setSelectedCourse = (state, action) => {
   return {
     ...state,
@@ -30,8 +37,9 @@ const resetSelectedCourse = (state) => {
 const courses = (state = initialState, action) => {
 	switch (action.type) {
     case 'SET_COURSES': return setCourses(state, action)
+    case 'RESET_COURSES': return resetCourses(state)
     case 'SET_SELECTED_COURSE': return setSelectedCourse(state, action)
-    case 'RESET_SELECTED_COURSE': return resetSelectedCourse(state, action)
+    case 'RESET_SELECTED_COURSE': return resetSelectedCourse(state)
     default: return state
   }
 }
