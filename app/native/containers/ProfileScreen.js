@@ -72,6 +72,7 @@ class ProfileScreen extends Component {
           <Button
             onPress={() => logoutAction()}
             text={'LOG OUT'}
+            icon={'exit-to-app'}
             danger
           />
         </LogoutContent>

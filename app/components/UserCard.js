@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components/native'
 import styles from '../utils/styles'
+import { Icon } from 'react-native-elements'
 
 const WrapperCard = styled.View`
   position: relative;
@@ -27,6 +28,9 @@ const ImageContent = styled.View`
 
   background-color: ${styles.colors.subtitle};
 
+  justify-content: center;
+  align-items: center;
+  
   margin: 16px;
 `
 
@@ -36,13 +40,14 @@ const TextContent = styled.View`
 
 const StyledText = styled.Text`
   font-size: 14px;
-  padding-top: 8px;
+  
+  margin-left: 4px;
+
   color: ${styles.colors.secondary};
 `
 
-const RatioText = styled.Text`
-  font-size: 14px;
-  color: ${styles.colors.secondary};
+const ReatioTextWrapper = styled.View`
+  flex-direction: row;
 
   position: absolute;
   bottom: 0;
@@ -51,20 +56,42 @@ const RatioText = styled.Text`
   padding: 8px;
 `
 
+const RatioText = styled.Text`
+  font-size: 14px;
+  color: ${styles.colors.secondary};
+
+  margin-left: 4px;
+`
+
+const WrapperText = styled.View`
+  margin-top: 8px;
+  flex-direction: row;
+`
+
 class UserCard extends PureComponent {
   render() {
     const { name, email, ratio } = this.props
     return (
       <WrapperCard>
         <ImageContent>
-
+          <Icon name='insert-emoticon' size={64} color={styles.colors.title} />
         </ImageContent>
+        
         <TextContent>
-          <StyledText>{name}</StyledText>
-          <StyledText>{email}</StyledText>
+          <WrapperText>
+            <Icon name='person' size={20} color={styles.colors.secondary} />
+            <StyledText>{name} </StyledText>
+          </WrapperText>
+          <WrapperText>
+            <Icon name='email' size={20} color={styles.colors.secondary} />
+            <StyledText>{email} </StyledText>
+          </WrapperText>
         </TextContent>
         { ratio &&
-          <RatioText>{ratio * 100} %</RatioText>
+          <ReatioTextWrapper>
+            <Icon name='work' size={20} color={styles.colors.secondary} />
+            <RatioText>{ratio * 100} %</RatioText>
+          </ReatioTextWrapper>
         }
       </WrapperCard>
     )

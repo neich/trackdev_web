@@ -5,7 +5,7 @@ import styles from '../utils/styles'
 import Card from './Card'
 
 const TitlePage = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: ${styles.colors.title};
 

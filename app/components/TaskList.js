@@ -5,11 +5,15 @@ import styles from '../utils/styles'
 import Card from './Card'
 
 const TitlePage = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: ${styles.colors.title};
 
   margin-bottom: 8px;
+`
+
+const Description = styled.Text`
+  margin: 8px 16px 16px 24px;
 `
 
 class TaskList extends PureComponent {
@@ -39,7 +43,7 @@ class TaskList extends PureComponent {
     return (
       <Fragment>
         <TitlePage>Descripció de la història:</TitlePage>
-        <Card description={infoTasks.descripcioHistoria} />
+        <Description>{infoTasks.descripcioHistoria}</Description>
         <TitlePage>Tasques assignades:</TitlePage>
         {this.renderTasks()}
       </Fragment>

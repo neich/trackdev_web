@@ -5,9 +5,8 @@ import { connect } from 'react-redux'
 import { handleGetSprints, resetSprints, setSelectedStory, setGroupUsers } from '../../actions/sprints'
 import { resetSelectedCourse } from '../../actions/courses'
 
-import { Icon } from 'react-native-elements'
 import SprintsList from '../../components/SprintsList'
-import FloatingButton from '../../components/FloatingButton'
+import Button from '../../components/Button'
 
 const Wrapper = styled.View`
   position: relative;
@@ -82,9 +81,12 @@ class SprintsScreen extends Component {
             />
           }
         </WrapperScreen>
-        <FloatingButton handleOnPress={setGroupUsers} >
-          <Icon name='group' size={24} color={styles.colors.primary} />
-        </FloatingButton>
+        <Button
+          onPress={setGroupUsers}
+          floating
+          icon={'group'}
+          colorInversion
+        />
       </Wrapper>
     )
   }

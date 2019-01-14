@@ -1,6 +1,7 @@
 import React, { PureComponent, Fragment } from 'react'
 import styled from 'styled-components/native'
 import styles from '../utils/styles'
+import { Icon } from 'react-native-elements'
 
 import UserCard from './UserCard'
 import Card from './Card'
@@ -9,7 +10,13 @@ const StyledText = styled.Text`
   font-size: 14px;
   color: ${styles.colors.secondary};
 
-  padding: 8px 16px 0px 24px;
+  margin-left: 4px;
+`
+
+const WrapperText = styled.View`
+  margin-top: 8px;
+  margin-left: 16px;
+  flex-direction: row;
 `
 
 class ProfilePage extends PureComponent{
@@ -26,8 +33,18 @@ class ProfilePage extends PureComponent{
           key={i}
           title={coursesList[i].acronym + '        ' + coursesList[i].dataInici.substr(-7) + '  -  ' + coursesList[i].dataFi.substr(-7)}
         >
-          <StyledText>{'Percentatge aportat: ' + coursesList[i].percentatgeAportat * 100 + '%'}</StyledText>
-          <StyledText>{'Nota final: ' + coursesList[i].nota}</StyledText>
+          <WrapperText>
+            <Icon name='work' size={20} color={styles.colors.secondary} />
+            <StyledText>{'Aportació: ' + coursesList[i].percentatgeAportat * 100 + '%'}</StyledText>
+          </WrapperText>
+          <WrapperText>
+            <Icon name='group-work' size={20} color={styles.colors.secondary} />
+            <StyledText>{'Nota de grup: ' + coursesList[i].nota}</StyledText>
+          </WrapperText>
+          <WrapperText>
+            <Icon name='fingerprint' size={20} color={styles.colors.secondary} />
+            <StyledText>{'Nota individual: ' + coursesList[i].nota}</StyledText>
+          </WrapperText>
         </Card>
       )
     }

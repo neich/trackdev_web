@@ -38,7 +38,6 @@ class ToDoScreen extends Component {
       </WrapperScreen>
     )
   }
-
 }
 
 const mapStateToProps = (state) => ({

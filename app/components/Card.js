@@ -63,8 +63,8 @@ const AfterWrapperCard = styled.TouchableOpacity`
   border-color: ${styles.colors.primary};
   border-radius: 8;
 
-  top: 0;
-  right: 0;
+  top: 8;
+  right: 8;
 
   flex: 1;
   justify-content: center;

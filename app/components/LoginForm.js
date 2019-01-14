@@ -57,7 +57,7 @@ class LoginForm extends Component {
             underlineColorAndroid={styles.colors.primary}
           />
         </View>
-        <Button onPress={() => this.onSubmit()} text="LOG IN" />
+        <Button onPress={() => this.onSubmit()} text="LOG IN" icon={'exit-to-app'} />
       </View>
     )
   }
